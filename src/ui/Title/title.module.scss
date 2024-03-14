@@ -1,0 +1,7 @@
+@use "src/variables";
+
+.title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: variables.$text_color;
+}

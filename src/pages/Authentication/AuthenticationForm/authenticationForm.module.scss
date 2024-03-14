@@ -1,0 +1,24 @@
+@use "src/variables";
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.input_wrapper {
+    margin-bottom: 15px;
+
+    input {
+	width: 100%;
+    }
+}

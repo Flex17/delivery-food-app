@@ -1,0 +1,18 @@
+@use "src/variables";
+
+.wrapper {
+    padding: 14px 20px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.default {
+    background-color: variables.$main_green;
+}
+
+.disabled {
+    background-color: variables.$light_green;
+}

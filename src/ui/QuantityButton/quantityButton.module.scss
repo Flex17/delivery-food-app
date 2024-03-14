@@ -1,0 +1,12 @@
+@use "src/variables";
+
+.wrapper {
+    border-radius: 50%;
+    background-color: variables.$main_green;
+    border: none;
+    color: variables.$white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

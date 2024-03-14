@@ -1,0 +1,45 @@
+@use "src/variables";
+
+.wrapper {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid variables.$main_green;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.main_opened {
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+}
+
+.hidden {
+    max-width: 100%;
+    position: relative;
+
+    .block {
+	position: absolute;
+	background-color: variables.$white;
+	z-index: 10;
+	border: 2px solid variables.$main_green;
+	border-bottom: none;
+    }
+}
+
+.invisible {
+    display: none;
+}
+
+.visible {
+    width: 100%
+}

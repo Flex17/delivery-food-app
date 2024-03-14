@@ -1,0 +1,40 @@
+@use "src/variables";
+
+.wrapper {
+    background-color: variables.$dark_green;
+    margin-bottom: 20px;
+    padding: 40px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_block {
+    display: flex;
+    align-items: center;
+
+    .nav_items {
+	display: flex;
+	gap: 30px;
+	margin-left: 40px;
+
+	.nav_item, .nav_active {
+	    color: variables.$white;
+	    font-size: 20px;
+	    border-bottom: 2px solid transparent;
+	    transition: all 0.3s ease-in-out;
+	    padding-bottom: 3px;
+
+	    &:hover {
+		border-color: variables.$white;
+	    }
+	}
+
+	.nav_active {
+	    border-bottom: 2px solid variables.$white;
+	}
+    }
+}

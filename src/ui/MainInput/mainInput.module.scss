@@ -1,0 +1,22 @@
+@use "src/variables";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    color: variables.$text_color;
+    border: 2px solid variables.$main_green;
+}
+
+.description {
+    margin-top: 5px;
+    color: variables.$secondary_text_color;
+    font-size: 12px;
+    font-weight: 600;
+}

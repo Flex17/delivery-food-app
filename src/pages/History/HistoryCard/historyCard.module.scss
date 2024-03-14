@@ -1,0 +1,50 @@
+@use "src/variables";
+
+.wrapper {
+    margin-bottom: 50px;
+    border: 2px solid variables.$main_green;
+    color: variables.$dark_green;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.main_info {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+
+    @media (max-width: 840px) {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+    }
+}
+
+.num {
+    font-weight: 600;
+}
+
+.products {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.product {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.product_info {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.picture {
+    width: 120px;
+    border-radius: 50%;
+}

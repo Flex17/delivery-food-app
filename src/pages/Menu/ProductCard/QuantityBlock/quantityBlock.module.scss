@@ -1,0 +1,20 @@
+@use "src/variables";
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.count {
+    border: 2px solid variables.$main_green;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: variables.$text_color;
+}

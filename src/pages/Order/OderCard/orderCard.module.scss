@@ -1,0 +1,65 @@
+@use "src/variables";
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    @media (max-width: 1000px) {
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 30px;
+    }
+}
+
+.picture {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.description_block {
+    margin-left: 15px;
+    max-width: 60%;
+
+    @media (max-width: 1000px) {
+	max-width: 100%;
+    }
+
+    .title {
+	color: variables.$dark_green;
+
+	@media (max-width: 1000px) {
+	    text-align: center;
+	}
+    }
+
+    .description {
+	color: variables.$secondary_text_color;
+
+	@media (max-width: 1000px) {
+	    text-align: center;
+	}
+    }
+}
+
+.btn {
+    background-color: #A0001D;
+    margin-left: 10px;
+}
+
+.price_container {
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 1000px) {
+	justify-content: center;
+    }
+}
+
+.price_block {
+    display: inline-flex;
+    border: 2px solid variables.$main_green;
+    padding: 10px;
+    border-radius: 10px;
+}
