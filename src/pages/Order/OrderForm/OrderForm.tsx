@@ -7,6 +7,7 @@ import { PaymentMethodT } from "../../../ui/Dropdown/DropdownItem/DropdownItem";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { orderSlice } from "../../../redux/reducers/OrderSlice";
+import { useTranslation } from "react-i18next";
 
 export interface OrderFormI {
 	address: string;
@@ -19,6 +20,8 @@ interface OrderFormProps {
 const paymentMethods: PaymentMethodT[] = ["Наличными", "По карте"];
 
 const OrderForm = ({ submit }: OrderFormProps) => {
+	const { t } = useTranslation();
+
 	const dispatch = useAppDispatch();
 	const paymentMethod = useAppSelector(state => state.orderReducer.paymentMethod);
 
@@ -50,15 +53,15 @@ const OrderForm = ({ submit }: OrderFormProps) => {
 
 	return (
 		<form className={css.wrapper} onSubmit={handleSubmit(submit)}>
-			<h2 className={css.title}>Заполните форму заказа</h2>
-			<MainInput className={css.input} placeholder="Введите ваш адрес" {...addressRegister} />
+			<h2 className={css.title}>{t("cart.form.title")}</h2>
+			<MainInput className={css.input} placeholder={t("cart.form.address")} {...addressRegister} />
 			<Dropdown currentItem={paymentMethod} setCurrentMethod={handlePaymentMethod} methods={paymentMethods}/>
 			<MainButton
 				styles={css.btn}
 				type="submit"
 				state={isValid && paymentMethod ? "default" : "disabled"}
 			>
-				Заказать
+				{t("cart.form.order")}
 			</MainButton>
 		</form>
 	);

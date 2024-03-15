@@ -1,27 +1,28 @@
-import { productsAPI } from "../../api/ProductsAPI";
 import ProductList from "./ProductList/ProductList";
-import Loader from "../../ui/Loader/Loader";
 import InfoText from "../../ui/InfoText/InfoText";
+import { useAppSelector } from "../../hooks/redux";
+import { productsAPI } from "../../api/ProductsAPI";
+import { useAuthToken } from "../../hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const Menu = () => {
-	const token = localStorage.getItem("access_token");
-
+	const { t } = useTranslation();
 	const {
-		data: products,
-		isLoading
-	} = productsAPI.useGetAllQuery({ auth: token || "" });
+		products,
+		total
+	} = useAppSelector(state => state.productsReducer);
 
-	if (isLoading) {
-		return <Loader/>;
-	}
+	const auth = useAuthToken();
+
+	productsAPI.useGetTotalQuery({ auth });
 
 	if (!products) {
-		return <InfoText>Продуктов нет...</InfoText>;
+		return <InfoText>{t("menu.noProducts")}</InfoText>;
 	}
 
 	return (
 		<main>
-			<ProductList products={products.data}/>
+			<ProductList total={total} products={products}/>
 		</main>
 	);
 };

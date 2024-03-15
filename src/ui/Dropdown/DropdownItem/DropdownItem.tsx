@@ -1,6 +1,7 @@
 import { ReactComponent as ChoicedIcon } from "../../../assets/img/choiced.svg";
 import React from "react";
 import css from "./dropdownItem.module.scss";
+import { useTranslateMethod } from "../../../hooks/useTranslateMethod";
 
 export type PaymentMethodT = "Наличными" | "По карте"
 
@@ -15,6 +16,7 @@ const DropdownItem = ({
 	method,
 	isActive,
 }: DropdownItemProps) => {
+	const { checkMethod } = useTranslateMethod();
 
 	return (
 		<div
@@ -22,7 +24,7 @@ const DropdownItem = ({
 			className={css.wrapper}
 			onClick={(e) => onChoice(e, method)}
 		>
-			{method}
+			{checkMethod(method)}
 			{isActive && <div className={css.icon}><ChoicedIcon/></div>}
 		</div>
 	);

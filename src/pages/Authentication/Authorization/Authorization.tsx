@@ -3,9 +3,11 @@ import AuthenticationForm, { AuthenticationFormI } from "../AuthenticationForm/A
 import { pathKeys } from "../../Router/config";
 import { useNavigate } from "react-router-dom";
 import { authAPI } from "../../../api/AuthAPI";
+import { useTranslation } from "react-i18next";
 
 const Authorization = () => {
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const [authorization] = authAPI.useAuthorizationMutation();
 
@@ -20,7 +22,11 @@ const Authorization = () => {
 	};
 
 	return (
-		<AuthenticationForm title="Вход" btnText="Войти" submit={onAuthorization}/>
+		<AuthenticationForm
+			title={t("authorization.title")}
+			btnText={t("authorization.btnText")}
+			submit={onAuthorization}
+		/>
 	);
 };
 

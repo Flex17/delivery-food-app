@@ -11,14 +11,18 @@ import { pathKeys } from "../Router/config";
 import InfoText from "../../ui/InfoText/InfoText";
 import css from "./order.module.scss";
 import { OrderData } from "../../models/order";
+import { useAuthToken } from "../../hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const Order = () => {
+	const { t } = useTranslation();
+
 	const dispatch = useAppDispatch();
 
-	const token = localStorage.getItem("access_token");
 	const localId = useAppSelector(state => state.authReducer.localId);
-
 	const orderData = useAppSelector(state => state.orderReducer);
+
+	const auth = useAuthToken();
 
 	const [makeOrder, {
 		isLoading,
@@ -30,7 +34,7 @@ const Order = () => {
 		try {
 			const data: OrderData = {
 				...orderData,
-				auth: token || "",
+				auth,
 				localId,
 			};
 
@@ -50,14 +54,14 @@ const Order = () => {
 	}
 
 	if (!orderData.products.length) {
-		return <InfoText>Ваша корзина пуста...</InfoText>;
+		return <InfoText>{t("cart.empty")}</InfoText>;
 	}
 
 	return (
 		<div className={css.wrapper}>
-			<Title>Оформить заказ</Title>
+			<Title>{t("cart.title")}</Title>
 			<OrderList/>
-			<div className={css.sum}>Итого: {orderData.totalPrice} ₽</div>
+			<div className={css.sum}>{t("cart.totalCost")}: {orderData.totalPrice} ₽</div>
 			<OrderForm submit={onOrder}/>
 		</div>
 	);

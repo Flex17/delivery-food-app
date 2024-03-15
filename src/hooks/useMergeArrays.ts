@@ -9,7 +9,7 @@ export const useMergeArrays = (orderProducts: IOrderProduct[], products: IProduc
 	}
 
 	// Создаем новый массив на основе второго массива
-	const mergedArray: IOrderProduct[] = products.map(product => ({
+	const mergedArray: IOrderProduct[] = products?.map(product => ({
 		product,
 		quantity: orderProductMap[product.id] || 0 // Если товар отсутствует в первом массиве, quantity = 0
 	}));

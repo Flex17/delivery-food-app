@@ -5,16 +5,20 @@ import css from "./history.module.scss";
 import HistoryList from "./HistoryList/HistoryList";
 import Loader from "../../ui/Loader/Loader";
 import InfoText from "../../ui/InfoText/InfoText";
+import { useAuthToken } from "../../hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const History = () => {
-	const token = localStorage.getItem("access_token");
+	const { t } = useTranslation();
 	const localId = useAppSelector(state => state.authReducer.localId);
+
+	const auth = useAuthToken();
 
 	const {
 		data,
 		isLoading
 	} = ordersAPI.useGetAllQuery({
-		auth: token || "",
+		auth,
 		localId
 	});
 
@@ -23,7 +27,7 @@ const History = () => {
 	}
 
 	if (!data) {
-		return <InfoText>Заказов не найдено...</InfoText>;
+		return <InfoText>{t("history.noOrders")}</InfoText>;
 	}
 
 	const preparedData: HistoryOrderDataI[] = Object.entries(data)
@@ -34,7 +38,7 @@ const History = () => {
 
 	return (
 		<div className={css.wrapper}>
-			<Title>Ваши заказы</Title>
+			<Title>{t("history.title")}</Title>
 			<HistoryList data={preparedData}/>
 		</div>
 	);

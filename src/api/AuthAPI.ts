@@ -72,13 +72,12 @@ export const authAPI = createApi({
 			}) {
 				try {
 					const result = await queryFulfilled;
-					console.log(result);
 
 					const {
 						email,
 						idToken,
 					} = result.data;
-					console.log(result);
+
 					localStorage.setItem("access_token", idToken);
 
 					dispatch(authSlice.actions.setIsAuth(true));

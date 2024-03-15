@@ -1,11 +1,14 @@
 import { HistoryOrderDataI } from "../../../api/OrdersAPI";
 import css from "./historyCard.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface HistoryCardProps {
 	data: HistoryOrderDataI,
 }
 
 const HistoryCard = ({ data }: HistoryCardProps) => {
+	const { t } = useTranslation();
+
 	const {
 		products,
 		totalPrice,
@@ -17,12 +20,12 @@ const HistoryCard = ({ data }: HistoryCardProps) => {
 	return (
 		<div className={css.wrapper}>
 			<div className={css.main_info}>
-				<span className={css.num}>Номер заказа: {id}</span>
-				<span>Стоимость: {totalPrice} ₽</span>
-				<span>Адресс: {address}</span>
-				<span>Метод оплаты: {paymentMethod}</span>
+				<span className={css.num}>{t("history.card.orderNumber")}: {id}</span>
+				<span>{t("history.card.cost")}: {totalPrice} ₽</span>
+				<span>{t("history.card.address")}: {address}</span>
+				<span>{t("history.card.payment")}: {paymentMethod}</span>
 			</div>
-			<span>Продукты:</span>
+			<span>{t("history.card.products")}:</span>
 			<div className={css.products}>
 				{
 					products.map(({
@@ -33,10 +36,9 @@ const HistoryCard = ({ data }: HistoryCardProps) => {
 							<div className={css.product} key={product.id}>
 								<img className={css.picture} src={product.img} alt={product.name}/>
 								<div className={css.product_info}>
-									<div>Название: {product.name}</div>
-									<div>{product.name}</div>
-									<div>Цена: {product.price}</div>
-									<div>Количество: {quantity}</div>
+									<div>{t("history.card.title")}: {product.name}</div>
+									<div>{t("history.card.price")}: {product.price}</div>
+									<div>{t("history.card.quantity")}: {quantity}</div>
 								</div>
 							</div>
 						);

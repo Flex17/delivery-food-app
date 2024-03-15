@@ -8,9 +8,7 @@ export const useHandleProduct = () => {
 	const orderProducts = useAppSelector(state => state.orderReducer.products);
 
 	const addProduct = (product: IOrderProduct) => {
-		console.log(product);
 		if (product.quantity > 1) {
-			console.log("Меняется index");
 			const index = orderProducts.findIndex(({ product: item }) => item.id === product.product.id);
 			if (index !== -1) {
 				const updatedProducts = [...orderProducts];
@@ -21,7 +19,6 @@ export const useHandleProduct = () => {
 				dispatch(orderSlice.actions.setProducts(updatedProducts));
 			}
 		} else {
-			console.log("Добавлен полностью");
 			dispatch(orderSlice.actions.addProduct(product));
 		}
 	};

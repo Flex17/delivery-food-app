@@ -3,6 +3,7 @@ import { useState } from "react";
 import MainButton from "../../../ui/MainButton/MainButton";
 import QuantityBlock from "./QuantityBlock/QuantityBlock";
 import { IOrderProduct } from "../../../models/order";
+import { useTranslation } from "react-i18next";
 
 interface ProductCardProps {
 	product: IOrderProduct,
@@ -15,6 +16,8 @@ const ProductCard = ({
 	removeProduct,
 	addProduct
 }: ProductCardProps) => {
+	const { t } = useTranslation();
+
 	const {
 		product: productData,
 		quantity
@@ -67,7 +70,7 @@ const ProductCard = ({
 						state="default"
 						onClick={onAdd}
 					>
-						Добавить в корзину
+						{t("productCard.toCart")}
 					</MainButton>
 			}
 		</div>

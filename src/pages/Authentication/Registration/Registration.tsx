@@ -3,12 +3,16 @@ import AuthenticationForm, { AuthenticationFormI } from "../AuthenticationForm/A
 import { useNavigate } from "react-router-dom";
 import { pathKeys } from "../../Router/config";
 import { authAPI } from "../../../api/AuthAPI";
+import { useTranslation } from "react-i18next";
 
 const Registration = () => {
+	const {
+		t,
+	} = useTranslation();
+
 	const navigate = useNavigate();
 
 	const [registration] = authAPI.useRegistrationMutation();
-
 	const onRegistration: SubmitHandler<AuthenticationFormI> = async (data) => {
 		try {
 			await registration(data);
@@ -20,7 +24,11 @@ const Registration = () => {
 	};
 
 	return (
-		<AuthenticationForm title="Регистрация" btnText="Зарегистрироваться" submit={onRegistration}/>
+		<AuthenticationForm
+			title={t("registration.title")}
+			btnText={t("registration.btnText")}
+			submit={onRegistration}
+		/>
 	);
 };
 

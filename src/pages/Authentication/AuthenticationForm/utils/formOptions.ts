@@ -1,7 +1,6 @@
 import { RegisterOptions } from "react-hook-form";
 
 export const emailPlaceholder = "yourmail@mail.ru";
-export const passwordPlaceholder = "Введите ваш пароль";
 
 export const EMAIL_ERROR = "Неверная форма записи e-mail";
 

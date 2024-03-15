@@ -5,12 +5,15 @@ import MainButton from "../../../ui/MainButton/MainButton";
 import { useAppDispatch } from "../../../hooks/redux";
 import { orderSlice } from "../../../redux/reducers/OrderSlice";
 import { useHandleProduct } from "../../../hooks/products/useHandleProduct";
+import { useTranslation } from "react-i18next";
 
 interface OrderCardProps {
 	cardData: IOrderProduct,
 }
 
 const OrderCard = ({ cardData }: OrderCardProps) => {
+	const { t } = useTranslation();
+
 	const {
 		product,
 		quantity
@@ -52,12 +55,12 @@ const OrderCard = ({ cardData }: OrderCardProps) => {
 				<h4 className={css.title}>{name}</h4>
 				<p className={css.description}>{description}</p>
 				<div className={css.price_container}>
-					<div className={css.price_block}>Цена: {price} ₽</div>
-					<div className={css.price_block}>Стоимость: {price * quantity} ₽</div>
+					<div className={css.price_block}>{t("history.card.price")}: {price} ₽</div>
+					<div className={css.price_block}>{t("history.card.cost")}: {price * quantity} ₽</div>
 				</div>
 			</div>
 			<QuantityBlock onAdd={onAdd} onRemove={onRemove} count={quantity}/>
-			<MainButton onClick={onDelete} styles={css.btn} state="default">Удалить</MainButton>
+			<MainButton onClick={onDelete} styles={css.btn} state="default">{t("cart.form.delete")}</MainButton>
 		</div>
 	);
 };

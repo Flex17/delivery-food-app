@@ -4,9 +4,11 @@ import AppRouter from "./pages/Router/Router";
 
 const App = () => {
 	return (
-		<div className={css.app}>
-			<AppRouter/>
-		</div>
+		<>
+			<div className={css.app}>
+				<AppRouter/>
+			</div>
+		</>
 	);
 };
 

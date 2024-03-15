@@ -2,9 +2,10 @@ import MainInput from "../../../ui/MainInput/MainInput";
 import MainButton from "../../../ui/MainButton/MainButton";
 import { SubmitHandler, useForm } from "react-hook-form";
 import css from "./authenticationForm.module.scss";
-import { emailInputOptions, emailPlaceholder, passwordPlaceholder } from "./utils/formOptions";
+import { emailInputOptions, emailPlaceholder } from "./utils/formOptions";
 import ChangeMethodLink from "./ChangeMethodLink/ChangeMethodLink";
 import Title from "../../../ui/Title/Title";
+import { useTranslation } from "react-i18next";
 
 export interface AuthenticationFormI {
 	email: string;
@@ -22,6 +23,7 @@ const AuthenticationForm = ({
 	btnText,
 	title,
 }: AuthenticationFormProps) => {
+	const { t } = useTranslation();
 	const {
 		register,
 		handleSubmit,
@@ -57,7 +59,7 @@ const AuthenticationForm = ({
 				<MainInput
 					className={css.input_wrapper}
 					{...passwordRegister}
-					placeholder={passwordPlaceholder}
+					placeholder={t("registration.passwordPlaceholder")}
 					description={errors.password?.message}
 				/>
 				<MainButton

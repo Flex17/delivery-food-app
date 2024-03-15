@@ -1,0 +1,31 @@
+@use "src/variables";
+
+.wrapper {
+    display: inline-flex;
+    gap: 10px;
+    position: sticky;
+    bottom: 10px;
+    left: 10px;
+
+    button {
+	border-radius: 5px;
+	border: 2px solid variables.$light_green;
+	padding: 5px 10px;
+	font-size: 15px;
+	font-weight: 600;
+	background-color: variables.$white;
+	cursor: pointer;
+	color: variables.$dark_green;
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+	    border: 2px solid variables.$main_green;
+	}
+
+    }
+
+    .selected {
+	background-color: variables.$light_green;
+	border: 2px solid variables.$main_green;
+    }
+}

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../../models/product";
-import { GetProductsResponse } from "../../api/ProductsAPI";
 
 interface ProductsStateI {
 	products: IProduct[],
@@ -16,10 +15,13 @@ export const productsSlice = createSlice({
 	name: "products",
 	initialState,
 	reducers: {
-		setProducts(state, action: PayloadAction<GetProductsResponse>) {
-			state.products = action.payload.data;
-			state.total = action.payload.total;
+		setProducts(state, action: PayloadAction<IProduct[]>) {
+			state.products = [...state.products, ...action.payload];
+
 		},
+		setTotal(state, action: PayloadAction<number>) {
+			state.total = action.payload;
+		}
 	},
 });
 

@@ -5,6 +5,7 @@ import { ReactComponent as CloseIcon } from "../..//assets/img/dropwDownClose.sv
 import { ReactComponent as OpenIcon } from "../../assets/img/dropDownOpen.svg";
 import DropdownItem, { PaymentMethodT } from "./DropdownItem/DropdownItem";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { useTranslateMethod } from "../../hooks/useTranslateMethod";
 
 interface DropdownProps {
 	currentItem: PaymentMethodT | undefined,
@@ -32,6 +33,8 @@ const Dropdown = ({
 		? <OpenIcon/>
 		: <CloseIcon/>;
 
+	const { checkMethod } = useTranslateMethod();
+
 	return (
 		<div className={css.wrapper}>
 			<div
@@ -41,7 +44,7 @@ const Dropdown = ({
 				ref={ref}
 			>
 				<div className={cx(css.main, isOpen && css.main_opened)}>
-					<span>{currentItem ? currentItem : "Не выбрано"}</span>
+					<span>{checkMethod(currentItem)}</span>
 					{openCloseArrow}
 				</div>
 
