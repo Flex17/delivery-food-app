@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react";
 
-const PER_PAGE = 8;
-
-const useDynamicPagination = (data: any[], total: number, fetchFunc: (startAt: number, endAt: number) => any) => {
+const useDynamicPagination = (data: any[], total: number, fetchFunc: () => any, increaseStartAt: () => void, increaseEnd: () => void) => {
 	const [fetching, setFetching] = useState(false);
 
-	const [startAt, setStartAt] = useState(1);
-	const [endAt, setEndAt] = useState(PER_PAGE);
+	const onFetch = () => {
+		fetchFunc()
+			.then(() => {
+				setFetching(false);
+				increaseStartAt();
+				increaseEnd();
+			});
+	};
 
 	useEffect(() => {
 		if (!data.length) {
-			fetchFunc(startAt, endAt)
-				.then(() => {
-					setFetching(false);
-					setStartAt(prev => prev + PER_PAGE);
-					setEndAt(prev => prev + PER_PAGE);
-				});
+			onFetch();
 		}
 	}, []);
 
 	useEffect(() => {
 		if (fetching) {
-			fetchFunc(startAt, endAt)
-				.then(() => {
-					setFetching(false);
-					setStartAt(prev => prev + PER_PAGE);
-					setEndAt(prev => prev + PER_PAGE);
-				});
+			onFetch();
 		}
 	}, [fetching]);
 

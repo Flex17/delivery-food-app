@@ -57,7 +57,7 @@ i18n
 							method: {
 								cash: "Cash",
 								byCard: "By card",
-								notSelected: "Not selected",
+								notSelected: "Payment by:",
 							},
 							order: "Order",
 							delete: "Delete"
@@ -112,7 +112,7 @@ i18n
 							method: {
 								cash: "Наличными",
 								byCard: "По карте",
-								notSelected: "Не выбрано",
+								notSelected: "Оплата по:",
 							},
 							order: "Заказать",
 							delete: "Удалить"
