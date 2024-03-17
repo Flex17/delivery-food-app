@@ -6,6 +6,7 @@ import { emailInputOptions, emailPlaceholder } from "./utils/formOptions";
 import ChangeMethodLink from "./ChangeMethodLink/ChangeMethodLink";
 import Title from "../../../ui/Title/Title";
 import { useTranslation } from "react-i18next";
+import PasswordInput from "../../../ui/PasswordInput/PasswordInput";
 
 export interface AuthenticationFormI {
 	email: string;
@@ -56,9 +57,10 @@ const AuthenticationForm = ({
 					placeholder={emailPlaceholder}
 					description={errors.email?.message}
 				/>
-				<MainInput
-					className={css.input_wrapper}
+				<PasswordInput
 					{...passwordRegister}
+					type="password"
+					className={css.input_wrapper}
 					placeholder={t("registration.passwordPlaceholder")}
 					description={errors.password?.message}
 				/>
