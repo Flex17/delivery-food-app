@@ -1,9 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery, providesList } from "./API";
+import { baseQueryWithReauth, providesList } from "./API";
 import { IProduct } from "../models/product";
 import { productsSlice } from "../redux/reducers/ProductsSlice";
 import { IGetProductsRequest, TOTAL_RESPONSE } from "./types";
-import { IAuth } from "../models/user";
 
 const PRODUCTS_URL = "/products";
 
@@ -11,12 +10,11 @@ const handleObject = (products: IProduct[]) => Object.values(products);
 
 export const productsAPI = createApi({
 	reducerPath: "productsAPI",
-	baseQuery: baseQuery,
+	baseQuery: baseQueryWithReauth,
 	tagTypes: ["products"],
 	endpoints: builder => ({
 		getAll: builder.query<IProduct[], IGetProductsRequest>({
 			query: ({
-				auth,
 				startAt,
 				endAt,
 			}) => ({
@@ -24,7 +22,6 @@ export const productsAPI = createApi({
 				method: "GET",
 				params: {
 					orderBy: "\"id\"",
-					auth,
 					startAt,
 					endAt
 				}
@@ -46,15 +43,11 @@ export const productsAPI = createApi({
 				return providesList(products, "products");
 			},
 		}),
-		getTotal: builder.query<TOTAL_RESPONSE, IAuth>({
-			query: ({
-				auth,
-			}) => ({
+		getTotal: builder.query<TOTAL_RESPONSE, void>({
+			query: () => ({
 				url: PRODUCTS_URL + "/total.json",
 				method: "GET",
-				params: {
-					auth,
-				}
+				params: {}
 			}),
 			async onQueryStarted(arg, {
 				dispatch,

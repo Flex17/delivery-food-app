@@ -1,32 +1,47 @@
-import { SubmitHandler } from "react-hook-form";
-import AuthenticationForm, { AuthenticationFormI } from "../AuthenticationForm/AuthenticationForm";
-import { pathKeys } from "../../Router/config";
-import { useNavigate } from "react-router-dom";
-import { authAPI } from "../../../api/AuthAPI";
 import { useTranslation } from "react-i18next";
+import AuthenticationFormWrapper from "../../../ui/AuthenticationFormWrapper/AuthenticationFormWrapper";
+import { emailPlaceholder } from "../../../hooks/useFormOptions";
+import MainInput from "../../../ui/MainInput/MainInput";
+import css from "../authenticationForm.module.scss";
+import PasswordInput from "../../../ui/PasswordInput/PasswordInput";
+import { useAuthorize } from "../../../hooks/useAuthorize";
+
+export interface AuthorizationFormI {
+	email: string;
+	password: string;
+}
 
 const Authorization = () => {
-	const navigate = useNavigate();
 	const { t } = useTranslation();
 
-	const [authorization] = authAPI.useAuthorizationMutation();
-
-	const onAuthorization: SubmitHandler<AuthenticationFormI> = async (data) => {
-		try {
-			await authorization(data);
-
-			navigate(pathKeys.root);
-		} catch (error) {
-			console.log("Ошибка");
-		}
-	};
+	const {
+		errors,
+		isValid,
+		emailRegister,
+		passwordRegister,
+		onSubmit
+	} = useAuthorize();
 
 	return (
-		<AuthenticationForm
+		<AuthenticationFormWrapper
 			title={t("authorization.title")}
+			isValid={isValid}
 			btnText={t("authorization.btnText")}
-			submit={onAuthorization}
-		/>
+			handleSubmit={onSubmit}
+		>
+			<MainInput
+				className={css.input_wrapper}
+				{...emailRegister}
+				placeholder={emailPlaceholder}
+				description={errors.email?.message}
+			/>
+			<PasswordInput
+				{...passwordRegister}
+				className={css.input_wrapper}
+				placeholder={t("form.passwordPlaceholder")}
+				description={errors.password?.message}
+			/>
+		</AuthenticationFormWrapper>
 	);
 };
 

@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery, providesList } from "./API";
+import { baseQueryWithReauth, providesList } from "./API";
 import { OrderData } from "../models/order";
 import { IAuthRequest } from "../models/user";
 import { IHistoryOrderData, IMakeOrderResponse } from "./types";
@@ -16,19 +16,16 @@ const handleObject = (response: OrderData[]) => {
 
 export const ordersAPI = createApi({
 	reducerPath: "ordersAPI",
-	baseQuery: baseQuery,
+	baseQuery: baseQueryWithReauth,
 	tagTypes: ["order"],
 	endpoints: builder => ({
 		getAll: builder.query<IHistoryOrderData[], IAuthRequest>({
 			query: ({
-				auth,
 				localId,
 			}) => ({
 				url: ORDERS_URL + "/" + localId + ".json",
 				method: "GET",
-				params: {
-					auth,
-				},
+				params: {}
 			}),
 			transformResponse: (response: OrderData[]): IHistoryOrderData[] => {
 				if (response) return handleObject(response);
@@ -41,15 +38,12 @@ export const ordersAPI = createApi({
 		}),
 		makeOrder: builder.mutation<IMakeOrderResponse, OrderData>({
 			query: ({
-				auth,
 				localId,
 				...data
 			}) => ({
 				url: ORDERS_URL + "/" + localId + ".json",
 				method: "POST",
-				params: {
-					auth,
-				},
+				params: {},
 				body: data
 			}),
 			invalidatesTags: ["order"],

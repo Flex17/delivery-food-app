@@ -1,19 +1,19 @@
 import { cartAPI } from "../api/CartAPI";
-import { useAuthToken } from "./useAuth";
 import { IOrderProduct } from "../models/order";
 import { ICartProduct } from "../models/product";
+import { useAppSelector } from "./redux";
 
 export const useOrderCardRequest = () => {
 	const [remove] = cartAPI.useRemoveProductMutation();
 	const [add] = cartAPI.useAddProductMutation();
 	const [update] = cartAPI.useUpdateProductQuantityMutation();
 
-	const authData = useAuthToken();
+	const localId = useAppSelector(state => state.authReducer.localId);
 
 	const onAdd = async (product: IOrderProduct) => {
 		try {
 			await add({
-				...authData,
+				localId,
 				product
 			});
 		} catch (e) {
@@ -23,7 +23,7 @@ export const useOrderCardRequest = () => {
 	const onRemove = async (product: ICartProduct) => {
 		try {
 			await remove({
-				...authData,
+				localId,
 				product
 			});
 		} catch (e) {
@@ -35,7 +35,7 @@ export const useOrderCardRequest = () => {
 		try {
 			if (product.quantity >= 1) {
 				await update({
-					...authData,
+					localId,
 					product: {
 						...product,
 						quantity: product.quantity + 1,
@@ -58,7 +58,7 @@ export const useOrderCardRequest = () => {
 				await onRemove(product);
 			} else {
 				await update({
-					...authData,
+					localId,
 					product: {
 						...product,
 						quantity: product.quantity - 1,

@@ -9,6 +9,7 @@ import Order from "../Order/Order";
 import History from "../History/History";
 import SuccessOrder from "../SuccessOrder/SuccessOrder";
 import UnauthorizedLayout from "../UnauthorizedLayout/UnauthorizedLayout";
+import NotFound from "../404/NotFound";
 
 const AppRouter = () => {
 
@@ -35,6 +36,7 @@ const AppRouter = () => {
 				<Route path={registration()} element={<Registration/>}/>
 				<Route path={authorization()} element={<Authorization/>}/>
 			</Route>
+			<Route path="*" element={<NotFound/>}/>
 		</Routes>
 	);
 };

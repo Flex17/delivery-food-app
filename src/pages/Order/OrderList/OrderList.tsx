@@ -1,12 +1,12 @@
 import OrderCard from "../OderCard/OrderCard";
 import css from "./orderList.module.scss";
 import { cartAPI } from "../../../api/CartAPI";
-import { useAuthToken } from "../../../hooks/useAuth";
+import { useAppSelector } from "../../../hooks/redux";
 
 const OrderList = () => {
-	const authData = useAuthToken();
+	const localId = useAppSelector(state => state.authReducer.localId);
 
-	const { data: products } = cartAPI.useGetCartQuery(authData);
+	const { data: products } = cartAPI.useGetCartQuery({ localId });
 
 	return (
 		<div className={css.wrapper}>

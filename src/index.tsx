@@ -6,6 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import { setupStore } from "./redux/store";
 import "./i18n";
 import { Provider } from "react-redux";
+import { injectStyle } from "react-toastify/dist/inject-style";
+
+injectStyle();
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement

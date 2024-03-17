@@ -10,13 +10,11 @@ export interface IUserInfo {
 	lastLoginAt: string,
 	lastRefreshAt: string,
 	localId: string,
+	name: string,
+	displayName: string,
 }
 
-export interface IAuth {
-	auth: string,
-}
-
-export interface IAuthRequest extends IAuth {
+export interface IAuthRequest {
 	localId: string;
 }
 

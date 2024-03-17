@@ -1,34 +1,56 @@
-import { SubmitHandler } from "react-hook-form";
-import AuthenticationForm, { AuthenticationFormI } from "../AuthenticationForm/AuthenticationForm";
-import { useNavigate } from "react-router-dom";
-import { pathKeys } from "../../Router/config";
-import { authAPI } from "../../../api/AuthAPI";
 import { useTranslation } from "react-i18next";
+import { emailPlaceholder } from "../../../hooks/useFormOptions";
+import css from "../authenticationForm.module.scss";
+import AuthenticationFormWrapper from "../../../ui/AuthenticationFormWrapper/AuthenticationFormWrapper";
+import MainInput from "../../../ui/MainInput/MainInput";
+import PasswordInput from "../../../ui/PasswordInput/PasswordInput";
+import { useRegister } from "../../../hooks/useRegister";
+
+export interface RegistrationFormI {
+	displayName: string;
+	phone: string;
+	email: string;
+	password: string;
+}
 
 const Registration = () => {
+	const { t } = useTranslation();
+
 	const {
-		t,
-	} = useTranslation();
-
-	const navigate = useNavigate();
-
-	const [registration] = authAPI.useRegistrationMutation();
-	const onRegistration: SubmitHandler<AuthenticationFormI> = async (data) => {
-		try {
-			await registration(data);
-
-			navigate(pathKeys.root);
-		} catch (error) {
-			console.log("Ошибка");
-		}
-	};
+		errors,
+		isValid,
+		emailRegister,
+		nameRegister,
+		passwordRegister,
+		onSubmit
+	} = useRegister();
 
 	return (
-		<AuthenticationForm
+		<AuthenticationFormWrapper
 			title={t("registration.title")}
+			isValid={isValid}
 			btnText={t("registration.btnText")}
-			submit={onRegistration}
-		/>
+			handleSubmit={onSubmit}
+		>
+			<MainInput
+				className={css.input_wrapper}
+				{...nameRegister}
+				placeholder={t("form.namePlaceholder")}
+				description={errors.displayName?.message}
+			/>
+			<MainInput
+				className={css.input_wrapper}
+				{...emailRegister}
+				placeholder={emailPlaceholder}
+				description={errors.email?.message}
+			/>
+			<PasswordInput
+				{...passwordRegister}
+				className={css.input_wrapper}
+				placeholder={t("form.passwordPlaceholder")}
+				description={errors.password?.message}
+			/>
+		</AuthenticationFormWrapper>
 	);
 };
 

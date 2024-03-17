@@ -9,10 +9,7 @@ const PasswordInput = React.forwardRef<
 	HTMLInputElement,
 	MainInputProps & ReturnType<UseFormRegister<any>>
 >(({
-	placeholder,
-	required,
 	className,
-	description,
 	children,
 	...props
 }, ref) => {
@@ -23,6 +20,8 @@ const PasswordInput = React.forwardRef<
 	return (
 		<MainInput
 			{...props}
+			ref={ref}
+			maxLength={50}
 			className={className}
 			type={visible ? "text" : "password"}
 		>

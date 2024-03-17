@@ -1,6 +1,6 @@
 import { ICartProduct } from "../models/product";
 import { IOrderProduct, OrderData } from "../models/order";
-import { IAuthRequest } from "../models/user";
+import { IAuthRequest, IUser, IUserInfo } from "../models/user";
 
 export interface IHandleProductRequest extends IAuthRequest {
 	product: ICartProduct;
@@ -15,7 +15,6 @@ export interface IGetUserRequest {
 }
 
 export interface IGetProductsRequest {
-	auth: string,
 	startAt: number,
 	endAt: number
 }
@@ -29,3 +28,19 @@ export interface IHistoryOrderData extends OrderData {
 }
 
 export type TOTAL_RESPONSE = number;
+
+export interface IRegistrationRequest extends IUser {
+	displayName: string,
+}
+
+export interface RegistrationResponse {
+	idToken: string,
+	email: string,
+	localId: string,
+	displayName: string,
+	refreshToken: string,
+}
+
+export interface GetUserResponse {
+	users: IUserInfo[];
+}

@@ -7,7 +7,6 @@ import OrderForm from "./OrderForm/OrderForm";
 import { Navigate } from "react-router-dom";
 import { pathKeys } from "../Router/config";
 import css from "./order.module.scss";
-import { useAuthToken } from "../../hooks/useAuth";
 import { useTranslation } from "react-i18next";
 import { cartAPI } from "../../api/CartAPI";
 import InfoText from "../../ui/InfoText/InfoText";
@@ -21,7 +20,7 @@ const Order = () => {
 
 	const orderData = useAppSelector(state => state.orderReducer);
 
-	const authData = useAuthToken();
+	const localId = useAppSelector(state => state.authReducer.localId);
 
 	const [makeOrder, {
 		data: orderResponse,
@@ -34,7 +33,7 @@ const Order = () => {
 	const {
 		data: cartData,
 		isLoading: isCartLoading
-	} = cartAPI.useGetCartQuery(authData);
+	} = cartAPI.useGetCartQuery({ localId });
 
 	const cost = useMemo(() => {
 		return cartData?.reduce((total, {
@@ -49,10 +48,10 @@ const Order = () => {
 				await makeOrder({
 					...orderData,
 					products: cartData,
-					...authData,
+					localId,
 					totalPrice: cost,
 				});
-				await Promise.all([clearCart({ ...authData }), updateOrders({ ...authData })]);
+				await Promise.all([clearCart({ localId }), updateOrders({ localId })]);
 			}
 
 			dispatch(orderSlice.actions.resetOrder());

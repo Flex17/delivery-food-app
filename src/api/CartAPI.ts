@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "./API";
+import { baseQueryWithReauth } from "./API";
 import { ICartProduct, IProduct } from "../models/product";
 import { IAuthRequest } from "../models/user";
 import { IAddProductRequest, IHandleProductRequest } from "./types";
@@ -17,19 +17,16 @@ const handleObject = (response: ICartProduct[]) => {
 
 export const cartAPI = createApi({
 	reducerPath: "cartAPI",
-	baseQuery: baseQuery,
+	baseQuery: baseQueryWithReauth,
 	tagTypes: ["cart"],
 	endpoints: builder => ({
 		getCart: builder.query<ICartProduct[], IAuthRequest>({
 			query: ({
-				auth,
 				localId,
 			}) => ({
 				url: CARTS_URL + "/" + localId + ".json",
 				method: "GET",
-				params: {
-					auth,
-				},
+				params: {}
 			}),
 			transformResponse: (response: ICartProduct[]) => {
 				if (response) return handleObject(response);
@@ -39,14 +36,13 @@ export const cartAPI = createApi({
 		}),
 		updateProductQuantity: builder.mutation<IProduct[], IHandleProductRequest>({
 			query: ({
-				auth,
 				localId,
 				...data
 			}) => ({
 				url: CARTS_URL + "/" + localId + "/" + data.product.id + ".json",
 				method: "PUT",
 				params: {
-					auth,
+					// auth,
 				},
 				body: {
 					...data.product
@@ -56,16 +52,13 @@ export const cartAPI = createApi({
 		}),
 		addProduct: builder.mutation<void, IAddProductRequest>({
 			query: ({
-				auth,
 				localId,
 				product,
 				...data
 			}) => ({
 				url: CARTS_URL + "/" + localId + ".json",
 				method: "POST",
-				params: {
-					auth,
-				},
+				params: {},
 				body: {
 					...data,
 					...product,
@@ -75,29 +68,23 @@ export const cartAPI = createApi({
 		}),
 		removeProduct: builder.mutation<void, IHandleProductRequest>({
 			query: ({
-				auth,
 				localId,
 				...data
 			}) => ({
 				url: CARTS_URL + "/" + localId + "/" + data.product.id + ".json",
 				method: "DELETE",
-				params: {
-					auth,
-				},
+				params: {},
 				body: data
 			}),
 			invalidatesTags: ["cart"],
 		}),
 		clearCart: builder.mutation<void, IAuthRequest>({
 			query: ({
-				auth,
 				localId,
 			}) => ({
 				url: CARTS_URL + "/" + localId + ".json",
 				method: "DELETE",
-				params: {
-					auth,
-				},
+				params: {},
 			}),
 			invalidatesTags: ["cart"],
 		}),

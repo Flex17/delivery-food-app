@@ -4,18 +4,18 @@ import css from "./history.module.scss";
 import HistoryList from "./HistoryList/HistoryList";
 import Loader from "../../ui/Loader/Loader";
 import InfoText from "../../ui/InfoText/InfoText";
-import { useAuthToken } from "../../hooks/useAuth";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../hooks/redux";
 
 const History = () => {
 	const { t } = useTranslation();
 
-	const authData = useAuthToken();
+	const localId = useAppSelector(state => state.authReducer.localId);
 
 	const {
 		data: orders,
 		isLoading,
-	} = ordersAPI.useGetAllQuery(authData);
+	} = ordersAPI.useGetAllQuery({ localId });
 
 	if (isLoading) {
 		return <Loader/>;

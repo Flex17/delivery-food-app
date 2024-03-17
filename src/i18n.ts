@@ -16,7 +16,6 @@ i18n
 						title: "Registration",
 						haveAccount: "Already have an account? Sign in",
 						btnText: "Sign up",
-						passwordPlaceholder: "Enter your password"
 					},
 					authorization: {
 						title: "Authorization",
@@ -63,6 +62,21 @@ i18n
 							delete: "Delete"
 						}
 					},
+					form: {
+						emailError: "Incorrect e-mail entry form",
+						passwordError: "Minimum password length: 6 characters",
+						passwordPlaceholder: "Enter your password",
+						namePlaceholder: "Enter your name",
+						onlyLetters: "Only letters can be used"
+					},
+					successOrder: {
+						thanks: "thank you for order!",
+						order: {
+							first: "Your order",
+							second: "successfully issued!"
+						}
+					},
+					error: "Something went wrong..."
 				},
 			},
 			ru: {
@@ -71,7 +85,6 @@ i18n
 						title: "Регистрация",
 						haveAccount: "Есть аккаунт? Войти",
 						btnText: "Зарегистрироваться",
-						passwordPlaceholder: "Введите ваш пароль"
 					},
 					authorization: {
 						title: "Вход",
@@ -118,6 +131,21 @@ i18n
 							delete: "Удалить"
 						}
 					},
+					form: {
+						emailError: "Неверная форма записи e-mail",
+						passwordError: "Минимальная длина пароля: 6 символов",
+						passwordPlaceholder: "Введите ваш пароль",
+						namePlaceholder: "Введите ваше имя",
+						onlyLetters: "Использовать можно только буквы"
+					},
+					successOrder: {
+						thanks: "спасибо за заказ!",
+						order: {
+							first: "Ваш заказ",
+							second: "успешно оформлен!"
+						}
+					},
+					error: "Что-то пошло не так..."
 				},
 			},
 		},
