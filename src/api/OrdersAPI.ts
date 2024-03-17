@@ -1,24 +1,25 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "./API";
-import { orderSlice } from "../redux/reducers/OrderSlice";
+import { baseQuery, providesList } from "./API";
 import { OrderData } from "../models/order";
+import { IAuthRequest } from "../models/user";
+import { IHistoryOrderData, IMakeOrderResponse } from "./types";
 
-const ORDERS_URL = "https://delivery-food-db-default-rtdb.firebaseio.com/orders";
+const ORDERS_URL = "/orders";
 
-export interface MakeOrderResponse {
-	name: string;
-}
-
-export interface HistoryOrderDataI extends OrderData {
-	id: string,
-}
+const handleObject = (response: OrderData[]) => {
+	return Object.entries(response)
+		.map(([id, item]) => ({
+			id,
+			...item
+		}));
+};
 
 export const ordersAPI = createApi({
 	reducerPath: "ordersAPI",
 	baseQuery: baseQuery,
 	tagTypes: ["order"],
 	endpoints: builder => ({
-		getAll: builder.query<OrderData[], { auth: string, localId: string }>({
+		getAll: builder.query<IHistoryOrderData[], IAuthRequest>({
 			query: ({
 				auth,
 				localId,
@@ -29,9 +30,16 @@ export const ordersAPI = createApi({
 					auth,
 				},
 			}),
-			providesTags: ["order"]
+			transformResponse: (response: OrderData[]): IHistoryOrderData[] => {
+				if (response) return handleObject(response);
+				return [];
+			},
+			providesTags: (result) => {
+				const data = result ? handleObject(result) : [];
+				return providesList(data, "order");
+			},
 		}),
-		makeOrder: builder.mutation<MakeOrderResponse, OrderData>({
+		makeOrder: builder.mutation<IMakeOrderResponse, OrderData>({
 			query: ({
 				auth,
 				localId,
@@ -45,18 +53,6 @@ export const ordersAPI = createApi({
 				body: data
 			}),
 			invalidatesTags: ["order"],
-			async onQueryStarted(arg, {
-				dispatch,
-				queryFulfilled,
-			}) {
-				try {
-					const result = await queryFulfilled;
-
-					dispatch(orderSlice.actions.setOrderId(result.data.name));
-				} catch (e) {
-					console.log(e);
-				}
-			},
 		}),
 	}),
 });

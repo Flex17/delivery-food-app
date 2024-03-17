@@ -36,12 +36,12 @@ i18n
 					history: {
 						title: "Your orders",
 						card: {
-							orderNumber: "Order number",
+							orderNumber: "Order",
 							cost: "Cost",
 							address: "Address",
 							payment: "Payment method",
 							products: "Products",
-							title: "Name",
+							name: "Title",
 							price: "Price",
 							quantity: "Quantity"
 						},
@@ -56,7 +56,7 @@ i18n
 							address: "Enter your address",
 							method: {
 								cash: "Cash",
-								byCard: "By card",
+								byCard: "Card",
 								notSelected: "Payment by:",
 							},
 							order: "Order",
@@ -111,7 +111,7 @@ i18n
 							address: "Введите ваш адрес",
 							method: {
 								cash: "Наличными",
-								byCard: "По карте",
+								byCard: "Карте",
 								notSelected: "Оплата по:",
 							},
 							order: "Заказать",

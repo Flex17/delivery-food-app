@@ -1,18 +1,25 @@
-import { IProduct } from "../models/product";
-import { IOrderProduct } from "../models/order";
+import { ICartProduct, IProduct } from "../models/product";
+import { useMemo } from "react";
 
-export const useMergeArrays = (orderProducts: IOrderProduct[], products: IProduct[]): IOrderProduct[] => {
-	// Создаем хэш-таблицу для быстрого доступа к товарам из первого массива
-	const orderProductMap: { [key: number]: number } = {};
-	for (const orderProduct of orderProducts) {
-		orderProductMap[orderProduct.product.id] = orderProduct.quantity;
-	}
+export const useMergeArrays = (orderProducts: ICartProduct[], products: IProduct[]) => {
+	const orderProductMap = useMemo(() => {
+		const map: { [key: number]: { id: string, quantity: number } } = {};
+		for (const orderProduct of orderProducts) {
+			map[orderProduct.product.id] = {
+				id: orderProduct.id,
+				quantity: orderProduct.quantity
+			};
+		}
+		return map;
+	}, [orderProducts]);
 
-	// Создаем новый массив на основе второго массива
-	const mergedArray: IOrderProduct[] = products?.map(product => ({
-		product,
-		quantity: orderProductMap[product.id] || 0 // Если товар отсутствует в первом массиве, quantity = 0
-	}));
-
-	return mergedArray;
+	return useMemo(() => {
+		return products.map(product => ({
+			id: orderProductMap[product.id]?.id || product.id.toString(),
+			product,
+			quantity: orderProductMap[product.id]?.quantity || 0
+		}));
+	}, [products, orderProductMap]);
 };
+
+

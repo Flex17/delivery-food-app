@@ -14,7 +14,6 @@ const QuantityBlock = ({
 	count,
 	onAdd
 }: QuantityBlockProps) => {
-
 	return (
 		<div className={css.wrapper}>
 			<QuantityButton onClick={onRemove}>

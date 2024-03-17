@@ -5,3 +5,9 @@ export interface IProduct {
 	description: string,
 	img: string,
 }
+
+export interface ICartProduct {
+	id: string,
+	product: IProduct,
+	quantity: number,
+}

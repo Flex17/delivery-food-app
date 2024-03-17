@@ -1,20 +1,16 @@
 import css from "./productCard.module.scss";
-import { useState } from "react";
-import MainButton from "../../../ui/MainButton/MainButton";
-import QuantityBlock from "./QuantityBlock/QuantityBlock";
-import { IOrderProduct } from "../../../models/order";
 import { useTranslation } from "react-i18next";
+import { useOrderCardRequest } from "../../../hooks/useOrderCardRequest";
+import QuantityBlock from "./QuantityBlock/QuantityBlock";
+import MainButton from "../../../ui/MainButton/MainButton";
+import { ICartProduct } from "../../../models/product";
 
 interface ProductCardProps {
-	product: IOrderProduct,
-	addProduct: (product: IOrderProduct) => void,
-	removeProduct: (product: IOrderProduct) => void,
+	product: ICartProduct,
 }
 
 const ProductCard = ({
 	product,
-	removeProduct,
-	addProduct
 }: ProductCardProps) => {
 	const { t } = useTranslation();
 
@@ -22,6 +18,7 @@ const ProductCard = ({
 		product: productData,
 		quantity
 	} = product;
+
 	const {
 		img,
 		name,
@@ -29,29 +26,14 @@ const ProductCard = ({
 		description
 	} = productData;
 
-	const [count, setCount] = useState(() => quantity);
+	const {
+		onDecrease,
+		onIncrease,
+	} = useOrderCardRequest();
 
-	const onAdd = () => {
+	const addProduct = async () => await onIncrease(product);
 
-		const addingProduct: IOrderProduct = {
-			product: { ...productData },
-			quantity: count + 1,
-		};
-
-		setCount(prev => prev + 1);
-		addProduct(addingProduct);
-	};
-
-	const onRemove = () => {
-		if (count > 0) {
-			setCount(prev => prev - 1);
-			const addingProduct: IOrderProduct = {
-				product: { ...productData },
-				quantity: count,
-			};
-			removeProduct(addingProduct);
-		}
-	};
+	const removeProduct = async () => await onDecrease(product);
 
 	return (
 		<div className={css.wrapper}>
@@ -64,11 +46,15 @@ const ProductCard = ({
 				{description}
 			</p>
 			{
-				count > 0
-					? <QuantityBlock onAdd={onAdd} onRemove={onRemove} count={count}/>
+				quantity > 0
+					? <QuantityBlock
+						onAdd={addProduct}
+						onRemove={removeProduct}
+						count={quantity}
+					/>
 					: <MainButton
 						state="default"
-						onClick={onAdd}
+						onClick={addProduct}
 					>
 						{t("productCard.toCart")}
 					</MainButton>

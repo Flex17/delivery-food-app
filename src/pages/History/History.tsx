@@ -1,5 +1,4 @@
-import { HistoryOrderDataI, ordersAPI } from "../../api/OrdersAPI";
-import { useAppSelector } from "../../hooks/redux";
+import { ordersAPI } from "../../api/OrdersAPI";
 import Title from "../../ui/Title/Title";
 import css from "./history.module.scss";
 import HistoryList from "./HistoryList/HistoryList";
@@ -10,36 +9,26 @@ import { useTranslation } from "react-i18next";
 
 const History = () => {
 	const { t } = useTranslation();
-	const localId = useAppSelector(state => state.authReducer.localId);
 
-	const auth = useAuthToken();
+	const authData = useAuthToken();
 
 	const {
-		data,
-		isLoading
-	} = ordersAPI.useGetAllQuery({
-		auth,
-		localId
-	});
+		data: orders,
+		isLoading,
+	} = ordersAPI.useGetAllQuery(authData);
 
 	if (isLoading) {
 		return <Loader/>;
 	}
 
-	if (!data) {
+	if (!orders?.length) {
 		return <InfoText>{t("history.noOrders")}</InfoText>;
 	}
-
-	const preparedData: HistoryOrderDataI[] = Object.entries(data)
-		.map(([id, item]) => ({
-			id,
-			...item
-		}));
 
 	return (
 		<div className={css.wrapper}>
 			<Title>{t("history.title")}</Title>
-			<HistoryList data={preparedData}/>
+			<HistoryList orders={orders}/>
 		</div>
 	);
 };

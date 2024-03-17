@@ -1,16 +1,15 @@
-import { IProduct } from "./product";
+import { ICartProduct, IProduct } from "./product";
 import { PaymentMethodT } from "../ui/Dropdown/DropdownItem/DropdownItem";
+import { IAuthRequest } from "./user";
 
 export interface IOrderProduct {
 	product: IProduct,
 	quantity: number,
 }
 
-export interface OrderData {
-	products: IOrderProduct[],
+export interface OrderData extends IAuthRequest {
+	products: ICartProduct[],
 	totalPrice: number,
-	auth: string,
-	localId: string,
 	address: string,
 	paymentMethod: PaymentMethodT,
 }

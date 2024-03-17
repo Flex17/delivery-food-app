@@ -13,7 +13,7 @@ export const pathKeys = {
 		return pathKeys.root.concat("history");
 	},
 	successOrderId(id: string) {
-		return pathKeys.root.concat("success/:" + id);
+		return pathKeys.root.concat("success/" + id);
 	},
 	successOrderPage() {
 		return pathKeys.root.concat("success/:id");

@@ -3,7 +3,7 @@ export interface IUser {
 	password: string,
 }
 
-export interface UserInfoI {
+export interface IUserInfo {
 	createdAt: string,
 	email: string,
 	emailVerified: false,
@@ -11,3 +11,12 @@ export interface UserInfoI {
 	lastRefreshAt: string,
 	localId: string,
 }
+
+export interface IAuth {
+	auth: string,
+}
+
+export interface IAuthRequest extends IAuth {
+	localId: string;
+}
+

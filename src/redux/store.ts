@@ -3,6 +3,7 @@ import authReducer from "./reducers/AuthSlice";
 import productsReducer from "./reducers/ProductsSlice";
 import orderReducer from "./reducers/OrderSlice";
 import { authAPI } from "../api/AuthAPI";
+import { cartAPI } from "../api/CartAPI";
 import { ordersAPI } from "../api/OrdersAPI";
 import { productsAPI } from "../api/ProductsAPI";
 
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
 	orderReducer,
 	productsReducer,
 	[authAPI.reducerPath]: authAPI.reducer,
+	[cartAPI.reducerPath]: cartAPI.reducer,
 	[ordersAPI.reducerPath]: ordersAPI.reducer,
 	[productsAPI.reducerPath]: productsAPI.reducer,
 });
@@ -18,7 +20,7 @@ const rootReducer = combineReducers({
 export const setupStore = () => configureStore({
 	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware()
-		.concat([authAPI.middleware, productsAPI.middleware, ordersAPI.middleware]),
+		.concat([authAPI.middleware, productsAPI.middleware, ordersAPI.middleware, cartAPI.middleware]),
 });
 
 export type RootState = ReturnType<typeof rootReducer>

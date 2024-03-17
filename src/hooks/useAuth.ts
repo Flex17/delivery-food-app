@@ -1,7 +1,12 @@
 import { useMemo } from "react";
+import { useAppSelector } from "./redux";
 
-export const useAuthToken = (): string => {
-	const token = localStorage.getItem("access_token") || "";
+export const useAuthToken = () => {
+	const auth = localStorage.getItem("access_token") || "";
+	const localId = useAppSelector(state => state.authReducer.localId);
 
-	return useMemo(() => token, [token]);
+	return useMemo(() => ({
+		auth,
+		localId
+	}), [auth, localId]);
 };

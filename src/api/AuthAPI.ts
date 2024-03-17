@@ -1,7 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { IUser, UserInfoI } from "../models/user";
+import { IUser, IUserInfo } from "../models/user";
 import { authSlice } from "../redux/reducers/AuthSlice";
-import { baseQuery } from "./API";
+import { IGetUserRequest } from "./types";
+import { authBaseQuery } from "./API";
 
 const SIGN_UP_URL = "/accounts:signUp";
 const SIGN_IN_URL = "/accounts:signInWithPassword";
@@ -14,12 +15,12 @@ interface RegistrationResponse {
 }
 
 interface GetUserResponse {
-	users: UserInfoI[];
+	users: IUserInfo[];
 }
 
 export const authAPI = createApi({
 	reducerPath: "authAPI",
-	baseQuery: baseQuery,
+	baseQuery: authBaseQuery,
 	endpoints: builder => ({
 		registration: builder.mutation<RegistrationResponse, IUser>({
 			query: (registrationData) => ({
@@ -87,7 +88,7 @@ export const authAPI = createApi({
 				}
 			},
 		}),
-		getUser: builder.query<GetUserResponse, { token: string }>({
+		getUser: builder.query<GetUserResponse, IGetUserRequest>({
 			query: (data) => ({
 				url: GET_USER_URL,
 				method: "POST",

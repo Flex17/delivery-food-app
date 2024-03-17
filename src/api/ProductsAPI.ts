@@ -1,17 +1,20 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "./API";
+import { baseQuery, providesList } from "./API";
 import { IProduct } from "../models/product";
 import { productsSlice } from "../redux/reducers/ProductsSlice";
+import { IGetProductsRequest, TOTAL_RESPONSE } from "./types";
+import { IAuth } from "../models/user";
 
-const PRODUCTS_URL = "https://delivery-food-db-default-rtdb.firebaseio.com/products";
+const PRODUCTS_URL = "/products";
 
-type TOTAL_RESPONSE = number;
+const handleObject = (products: IProduct[]) => Object.values(products);
 
 export const productsAPI = createApi({
 	reducerPath: "productsAPI",
 	baseQuery: baseQuery,
+	tagTypes: ["products"],
 	endpoints: builder => ({
-		getAll: builder.mutation<IProduct[], { auth: string, startAt: number, endAt: number }>({
+		getAll: builder.query<IProduct[], IGetProductsRequest>({
 			query: ({
 				auth,
 				startAt,
@@ -33,13 +36,17 @@ export const productsAPI = createApi({
 				try {
 					const result = await queryFulfilled;
 
-					dispatch(productsSlice.actions.setProducts(Object.values(result.data)));
+					dispatch(productsSlice.actions.setProducts(handleObject(result.data)));
 				} catch (e) {
 					console.log(e);
 				}
 			},
+			providesTags: (result) => {
+				const products = result ? handleObject(result) : [];
+				return providesList(products, "products");
+			},
 		}),
-		getTotal: builder.query<TOTAL_RESPONSE, { auth: string }>({
+		getTotal: builder.query<TOTAL_RESPONSE, IAuth>({
 			query: ({
 				auth,
 			}) => ({

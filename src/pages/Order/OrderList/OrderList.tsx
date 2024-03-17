@@ -1,17 +1,19 @@
-import { useAppSelector } from "../../../hooks/redux";
 import OrderCard from "../OderCard/OrderCard";
 import css from "./orderList.module.scss";
+import { cartAPI } from "../../../api/CartAPI";
+import { useAuthToken } from "../../../hooks/useAuth";
 
 const OrderList = () => {
-	const orders = useAppSelector(state => state.orderReducer.products);
+	const authData = useAuthToken();
 
-	if (!orders.length) {
-		return <div>Корзина пустая, добавьте продукты...</div>;
-	}
+	const { data: products } = cartAPI.useGetCartQuery(authData);
 
 	return (
 		<div className={css.wrapper}>
-			{orders.map(orderData => <OrderCard key={orderData.product.id} cardData={orderData}/>)}
+			{
+				products?.map(orderData => <OrderCard key={orderData.product.id} cardData={orderData}/>
+				)
+			}
 		</div>
 	);
 };

@@ -1,0 +1,17 @@
+.product {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.product_info {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.picture {
+    width: 120px;
+    border-radius: 50%;
+}

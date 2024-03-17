@@ -1,18 +1,18 @@
-import { HistoryOrderDataI } from "../../../api/OrdersAPI";
 import HistoryCard from "../HistoryCard/HistoryCard";
+import { IHistoryOrderData } from "../../../api/types";
 
 interface HistoryListProps {
-	data: HistoryOrderDataI[],
+	orders: IHistoryOrderData[],
 }
 
-const HistoryList = ({ data }: HistoryListProps) => {
+const HistoryList = ({ orders }: HistoryListProps) => {
 
 	return (
 		<>
 			{
-				data?.map(order => {
+				orders.map(order => {
 					return (
-						<HistoryCard key={order.id} data={order}/>
+						<HistoryCard key={order.id} order={order}/>
 					);
 				})
 			}

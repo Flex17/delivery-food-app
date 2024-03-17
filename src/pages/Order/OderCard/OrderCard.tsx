@@ -1,22 +1,20 @@
-import { IOrderProduct } from "../../../models/order";
 import css from "./orderCard.module.scss";
-import QuantityBlock from "../../Menu/ProductCard/QuantityBlock/QuantityBlock";
-import MainButton from "../../../ui/MainButton/MainButton";
-import { useAppDispatch } from "../../../hooks/redux";
-import { orderSlice } from "../../../redux/reducers/OrderSlice";
-import { useHandleProduct } from "../../../hooks/products/useHandleProduct";
 import { useTranslation } from "react-i18next";
+import MainButton from "../../../ui/MainButton/MainButton";
+import QuantityBlock from "../../Menu/ProductCard/QuantityBlock/QuantityBlock";
+import { useOrderCardRequest } from "../../../hooks/useOrderCardRequest";
+import { ICartProduct } from "../../../models/product";
 
 interface OrderCardProps {
-	cardData: IOrderProduct,
+	cardData: ICartProduct,
 }
 
 const OrderCard = ({ cardData }: OrderCardProps) => {
 	const { t } = useTranslation();
 
 	const {
-		product,
-		quantity
+		quantity,
+		product
 	} = cardData;
 
 	const {
@@ -26,27 +24,11 @@ const OrderCard = ({ cardData }: OrderCardProps) => {
 		description,
 	} = product;
 
-	const dispatch = useAppDispatch();
-
 	const {
-		removeProduct,
-		addProduct
-	} = useHandleProduct();
-
-	const onAdd = () => {
-		addProduct({
-			...cardData,
-			quantity: quantity + 1
-		});
-	};
-
-	const onRemove = () => {
-		removeProduct(cardData);
-	};
-
-	const onDelete = () => {
-		dispatch(orderSlice.actions.removeProduct(cardData));
-	};
+		onRemove,
+		onDecrease,
+		onIncrease
+	} = useOrderCardRequest();
 
 	return (
 		<div className={css.wrapper}>
@@ -59,8 +41,18 @@ const OrderCard = ({ cardData }: OrderCardProps) => {
 					<div className={css.price_block}>{t("history.card.cost")}: {price * quantity} ₽</div>
 				</div>
 			</div>
-			<QuantityBlock onAdd={onAdd} onRemove={onRemove} count={quantity}/>
-			<MainButton onClick={onDelete} styles={css.btn} state="default">{t("cart.form.delete")}</MainButton>
+			<QuantityBlock
+				onAdd={() => onIncrease(cardData)}
+				onRemove={() => onDecrease(cardData)}
+				count={quantity}
+			/>
+			<MainButton
+				onClick={() => onRemove(cardData)}
+				styles={css.btn}
+				state="default"
+			>
+				{t("cart.form.delete")}
+			</MainButton>
 		</div>
 	);
 };

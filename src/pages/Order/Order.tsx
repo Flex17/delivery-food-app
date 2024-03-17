@@ -1,59 +1,75 @@
 import { ordersAPI } from "../../api/OrdersAPI";
 import Loader from "../../ui/Loader/Loader";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { useCalculateAmount } from "../../hooks/useCalculateAmount";
 import OrderList from "./OrderList/OrderList";
 import Title from "../../ui/Title/Title";
 import OrderForm from "./OrderForm/OrderForm";
-import { orderSlice } from "../../redux/reducers/OrderSlice";
 import { Navigate } from "react-router-dom";
 import { pathKeys } from "../Router/config";
-import InfoText from "../../ui/InfoText/InfoText";
 import css from "./order.module.scss";
-import { OrderData } from "../../models/order";
 import { useAuthToken } from "../../hooks/useAuth";
 import { useTranslation } from "react-i18next";
+import { cartAPI } from "../../api/CartAPI";
+import InfoText from "../../ui/InfoText/InfoText";
+import { useMemo } from "react";
+import { orderSlice } from "../../redux/reducers/OrderSlice";
 
 const Order = () => {
 	const { t } = useTranslation();
 
 	const dispatch = useAppDispatch();
 
-	const localId = useAppSelector(state => state.authReducer.localId);
 	const orderData = useAppSelector(state => state.orderReducer);
 
-	const auth = useAuthToken();
+	const authData = useAuthToken();
 
 	const [makeOrder, {
-		isLoading,
-		data: response
+		data: orderResponse,
+		isLoading: isOrderLoading,
 	}] = ordersAPI.useMakeOrderMutation();
 
-	useCalculateAmount();
+	const [clearCart] = cartAPI.useClearCartMutation();
+	const [updateOrders] = ordersAPI.useLazyGetAllQuery();
+
+	const {
+		data: cartData,
+		isLoading: isCartLoading
+	} = cartAPI.useGetCartQuery(authData);
+
+	const cost = useMemo(() => {
+		return cartData?.reduce((total, {
+			quantity,
+			product
+		}) => total + (product.price * quantity), 0);
+	}, [cartData]);
+
 	const onOrder = async () => {
 		try {
-			const data: OrderData = {
-				...orderData,
-				auth,
-				localId,
-			};
+			if (cartData && cost) {
+				await makeOrder({
+					...orderData,
+					products: cartData,
+					...authData,
+					totalPrice: cost,
+				});
+				await Promise.all([clearCart({ ...authData }), updateOrders({ ...authData })]);
+			}
 
-			await makeOrder(data);
 			dispatch(orderSlice.actions.resetOrder());
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	if (isLoading) {
+	if (isOrderLoading || isCartLoading) {
 		return <Loader/>;
 	}
 
-	if (response) {
-		return <Navigate to={pathKeys.successOrderId(orderData.orderId)}/>;
+	if (orderResponse) {
+		return <Navigate to={pathKeys.successOrderId(orderResponse.name)}/>;
 	}
 
-	if (!orderData.products.length) {
+	if (!cartData?.length) {
 		return <InfoText>{t("cart.empty")}</InfoText>;
 	}
 
@@ -61,7 +77,7 @@ const Order = () => {
 		<div className={css.wrapper}>
 			<Title>{t("cart.title")}</Title>
 			<OrderList/>
-			<div className={css.sum}>{t("cart.totalCost")}: {orderData.totalPrice} ₽</div>
+			<span className={css.sum}>{t("cart.totalCost")}: {cost} ₽</span>
 			<OrderForm submit={onOrder}/>
 		</div>
 	);
