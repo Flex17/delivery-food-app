@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
-import AuthenticationFormWrapper from "../../../ui/AuthenticationFormWrapper/AuthenticationFormWrapper";
-import { emailPlaceholder } from "../../../hooks/useFormOptions";
-import MainInput from "../../../ui/MainInput/MainInput";
+import AuthenticationFormWrapper from "@ui/AuthenticationFormWrapper/AuthenticationFormWrapper";
+import { emailPlaceholder } from "@hooks/useFormOptions";
+import MainInput from "@ui/MainInput/MainInput";
 import css from "../authenticationForm.module.scss";
-import PasswordInput from "../../../ui/PasswordInput/PasswordInput";
-import { useAuthorize } from "../../../hooks/useAuthorize";
+import PasswordInput from "@ui/PasswordInput/PasswordInput";
+import { useAuthorize } from "@hooks/useAuthorize";
 
 export interface AuthorizationFormI {
 	email: string;

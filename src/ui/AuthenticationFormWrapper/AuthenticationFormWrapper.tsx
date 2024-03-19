@@ -1,8 +1,8 @@
-import css from "./authenticationFormWrapper.module.scss";
-import Title from "../Title/Title";
-import MainButton from "../MainButton/MainButton";
-import ChangeMethodLink from "./ChangeMethodLink/ChangeMethodLink";
 import React from "react";
+import ChangeMethodLink from "./ChangeMethodLink/ChangeMethodLink";
+import Title from "@ui/Title/Title";
+import MainButton from "@ui/MainButton/MainButton";
+import css from "./authenticationFormWrapper.module.scss";
 
 interface AuthenticationFormWrapperProps {
 	title: string,

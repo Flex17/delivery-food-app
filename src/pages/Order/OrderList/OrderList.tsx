@@ -1,7 +1,7 @@
 import OrderCard from "../OderCard/OrderCard";
+import { cartAPI } from "@api/CartAPI";
+import { useAppSelector } from "@hooks/redux";
 import css from "./orderList.module.scss";
-import { cartAPI } from "../../../api/CartAPI";
-import { useAppSelector } from "../../../hooks/redux";
 
 const OrderList = () => {
 	const localId = useAppSelector(state => state.authReducer.localId);

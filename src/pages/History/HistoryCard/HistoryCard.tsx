@@ -1,7 +1,7 @@
 import css from "./historyCard.module.scss";
 import { useTranslation } from "react-i18next";
 import CardProductsList from "./CardProductsList/CardProductsList";
-import { IHistoryOrderData } from "../../../api/types";
+import { IHistoryOrderData } from "@api/types";
 
 interface HistoryCardProps {
 	order: IHistoryOrderData,

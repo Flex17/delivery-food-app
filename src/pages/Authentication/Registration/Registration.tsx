@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { emailPlaceholder } from "../../../hooks/useFormOptions";
+import { emailPlaceholder } from "@hooks/useFormOptions";
 import css from "../authenticationForm.module.scss";
-import AuthenticationFormWrapper from "../../../ui/AuthenticationFormWrapper/AuthenticationFormWrapper";
-import MainInput from "../../../ui/MainInput/MainInput";
-import PasswordInput from "../../../ui/PasswordInput/PasswordInput";
-import { useRegister } from "../../../hooks/useRegister";
+import AuthenticationFormWrapper from "@ui/AuthenticationFormWrapper/AuthenticationFormWrapper";
+import MainInput from "@ui/MainInput/MainInput";
+import PasswordInput from "@ui/PasswordInput/PasswordInput";
+import { useRegister } from "@hooks/useRegister";
 
 export interface RegistrationFormI {
 	displayName: string;

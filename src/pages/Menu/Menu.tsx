@@ -1,12 +1,12 @@
-import ProductList from "./ProductList/ProductList";
-import InfoText from "../../ui/InfoText/InfoText";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { productsAPI } from "../../api/ProductsAPI";
 import { useTranslation } from "react-i18next";
-import useDynamicPagination from "../../hooks/useDynamicPagination";
-import { productsSlice } from "../../redux/reducers/ProductsSlice";
-import { cartAPI } from "../../api/CartAPI";
-import { useMergeArrays } from "../../hooks/useMergeArrays";
+import ProductList from "./ProductList/ProductList";
+import { cartAPI } from "@api/CartAPI";
+import { productsAPI } from "@api/ProductsAPI";
+import { productsSlice } from "@redux/reducers/ProductsSlice";
+import { useAppDispatch, useAppSelector } from "@hooks/redux";
+import useDynamicPagination from "@hooks/useDynamicPagination";
+import { useMergeArrays } from "@hooks/useMergeArrays";
+import InfoText from "@ui/InfoText/InfoText";
 
 const Menu = () => {
 	const dispatch = useAppDispatch();

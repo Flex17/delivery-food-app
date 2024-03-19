@@ -1,6 +1,6 @@
 import css from "./productList.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
-import { ICartProduct } from "../../../models/product";
+import { ICartProduct } from "@models/product";
 
 interface ProductListProps {
 	products: ICartProduct[];

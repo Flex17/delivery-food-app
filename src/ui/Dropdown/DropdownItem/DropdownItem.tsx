@@ -1,7 +1,7 @@
-import { ReactComponent as ChoicedIcon } from "../../../assets/img/choiced.svg";
 import React from "react";
+import { ReactComponent as ChoicedIcon } from "../../../assets/img/choiced.svg";
+import { useTranslateMethod } from "@hooks/useTranslateMethod";
 import css from "./dropdownItem.module.scss";
-import { useTranslateMethod } from "../../../hooks/useTranslateMethod";
 
 export type PaymentMethodT = "Наличными" | "По карте"
 

@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { pathKeys } from "../../pages/Router/config";
-import css from "./navbar.module.scss";
-import cx from "classnames";
-import { ReactComponent as CartIcon } from "../../assets/img/cart.svg";
-import Logo from "../Logo/Logo";
 import { useTranslation } from "react-i18next";
+import cx from "classnames";
+import { ReactComponent as CartIcon } from "@assets/img/cart.svg";
+import Logo from "@ui/Logo/Logo";
+import { pathKeys } from "@pages/Router/config";
+import css from "./navbar.module.scss";
 
 const Navbar = () => {
 	const { t } = useTranslation();

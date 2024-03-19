@@ -1,5 +1,5 @@
 import { ICartProduct, IProduct } from "./product";
-import { PaymentMethodT } from "../ui/Dropdown/DropdownItem/DropdownItem";
+import { PaymentMethodT } from "@ui/Dropdown/DropdownItem/DropdownItem";
 import { IAuthRequest } from "./user";
 
 export interface IOrderProduct {

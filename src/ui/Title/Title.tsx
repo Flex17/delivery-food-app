@@ -1,6 +1,6 @@
 import React from "react";
-import css from "./title.module.scss";
 import cx from "classnames";
+import css from "./title.module.scss";
 
 interface TitleProps {
 	children: React.ReactNode,

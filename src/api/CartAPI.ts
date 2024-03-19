@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReauth } from "./API";
-import { ICartProduct, IProduct } from "../models/product";
-import { IAuthRequest } from "../models/user";
+import { ICartProduct, IProduct } from "@models/product";
+import { IAuthRequest } from "@models/user";
 import { IAddProductRequest, IHandleProductRequest } from "./types";
 
 const CARTS_URL = "/carts";

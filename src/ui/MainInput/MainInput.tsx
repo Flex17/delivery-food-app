@@ -1,7 +1,7 @@
 import React from "react";
-import css from "./mainInput.module.scss";
-import cx from "classnames";
 import { UseFormRegister } from "react-hook-form";
+import cx from "classnames";
+import css from "./mainInput.module.scss";
 
 export interface MainInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	description?: string;

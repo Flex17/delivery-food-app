@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import css from "./dropdown.module.scss";
 import cx from "classnames";
-import { ReactComponent as CloseIcon } from "../..//assets/img/dropwDownClose.svg";
-import { ReactComponent as OpenIcon } from "../../assets/img/dropDownOpen.svg";
 import DropdownItem, { PaymentMethodT } from "./DropdownItem/DropdownItem";
-import { useOutsideClick } from "../../hooks/useOutsideClick";
-import { useTranslateMethod } from "../../hooks/useTranslateMethod";
+import { ReactComponent as CloseIcon } from "@assets/img/dropwDownClose.svg";
+import { ReactComponent as OpenIcon } from "@assets/img/dropDownOpen.svg";
+import { useOutsideClick } from "@hooks/useOutsideClick";
+import { useTranslateMethod } from "@hooks/useTranslateMethod";
+import css from "./dropdown.module.scss";
 
 interface DropdownProps {
 	currentItem: PaymentMethodT | undefined,

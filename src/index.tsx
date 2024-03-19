@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.scss";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { setupStore } from "./redux/store";
-import "./i18n";
 import { Provider } from "react-redux";
 import { injectStyle } from "react-toastify/dist/inject-style";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { setupStore } from "@redux/store";
+import "./index.scss";
+import "./i18n";
 
 injectStyle();
 

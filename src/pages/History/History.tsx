@@ -1,11 +1,11 @@
-import { ordersAPI } from "../../api/OrdersAPI";
+import { ordersAPI } from "@api/OrdersAPI";
 import Title from "../../ui/Title/Title";
 import css from "./history.module.scss";
 import HistoryList from "./HistoryList/HistoryList";
 import Loader from "../../ui/Loader/Loader";
 import InfoText from "../../ui/InfoText/InfoText";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "@hooks/redux";
 
 const History = () => {
 	const { t } = useTranslation();

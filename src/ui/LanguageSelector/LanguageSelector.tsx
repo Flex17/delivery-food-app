@@ -1,5 +1,5 @@
-import css from "./languageSelector.module.scss";
 import { useTranslation } from "react-i18next";
+import css from "./languageSelector.module.scss";
 
 const languages = [
 	{

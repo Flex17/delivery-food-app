@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { authAPI } from "../api/AuthAPI";
+import { authAPI } from "@api/AuthAPI";
 import { useSetUser } from "./useSetUser";
 import { useFormOptions } from "./useFormOptions";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { pathKeys } from "../pages/Router/config";
+import { pathKeys } from "@pages/Router/config";
 import { toast } from "react-toastify";
-import { AuthorizationFormI } from "../pages/Authentication/Authorization/Authorization";
+import { AuthorizationFormI } from "@pages/Authentication/Authorization/Authorization";
 
 export const useAuthorize = () => {
 	const navigate = useNavigate();

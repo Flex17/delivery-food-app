@@ -1,6 +1,6 @@
-import { ICartProduct } from "../models/product";
-import { IOrderProduct, OrderData } from "../models/order";
-import { IAuthRequest, IUser, IUserInfo } from "../models/user";
+import { ICartProduct } from "@models/product";
+import { IOrderProduct, OrderData } from "@models/order";
+import { IAuthRequest, IUser, IUserInfo } from "@models/user";
 
 export interface IHandleProductRequest extends IAuthRequest {
 	product: ICartProduct;

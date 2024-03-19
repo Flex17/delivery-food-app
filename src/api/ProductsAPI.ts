@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReauth, providesList } from "./API";
-import { IProduct } from "../models/product";
-import { productsSlice } from "../redux/reducers/ProductsSlice";
+import { IProduct } from "@models/product";
+import { productsSlice } from "@redux/reducers/ProductsSlice";
 import { IGetProductsRequest, TOTAL_RESPONSE } from "./types";
 
 const PRODUCTS_URL = "/products";

@@ -1,7 +1,7 @@
-import QuantityButton from "../../../../ui/QuantityButton/QuantityButton";
+import QuantityButton from "@ui/QuantityButton/QuantityButton";
+import { ReactComponent as PlusIcon } from "@assets/img/plus.svg";
+import { ReactComponent as MinusIcon } from "@assets/img/minus.svg";
 import css from "./quantityBlock.module.scss";
-import { ReactComponent as PlusIcon } from "../../../../assets/img/plus.svg";
-import { ReactComponent as MinusIcon } from "../../../../assets/img/minus.svg";
 
 interface QuantityBlockProps {
 	onAdd: () => void,

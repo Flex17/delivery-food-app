@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PaymentMethodT } from "../../ui/Dropdown/DropdownItem/DropdownItem";
+import { PaymentMethodT } from "@ui/Dropdown/DropdownItem/DropdownItem";
 
 interface OrderStateI {
 	address: string,

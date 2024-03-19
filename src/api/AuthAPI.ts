@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { IUser } from "../models/user";
-import { authSlice } from "../redux/reducers/AuthSlice";
+import { IUser } from "@models/user";
+import { authSlice } from "@redux/reducers/AuthSlice";
 import { GetUserResponse, IGetUserRequest, IRegistrationRequest, RegistrationResponse } from "./types";
 import { authBaseQueryWithReauth } from "./API";
 

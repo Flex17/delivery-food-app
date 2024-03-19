@@ -1,17 +1,17 @@
-import { ordersAPI } from "../../api/OrdersAPI";
-import Loader from "../../ui/Loader/Loader";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import OrderList from "./OrderList/OrderList";
-import Title from "../../ui/Title/Title";
-import OrderForm from "./OrderForm/OrderForm";
-import { Navigate } from "react-router-dom";
-import { pathKeys } from "../Router/config";
-import css from "./order.module.scss";
-import { useTranslation } from "react-i18next";
-import { cartAPI } from "../../api/CartAPI";
-import InfoText from "../../ui/InfoText/InfoText";
 import { useMemo } from "react";
-import { orderSlice } from "../../redux/reducers/OrderSlice";
+import { Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { pathKeys } from "../Router/config";
+import OrderForm from "./OrderForm/OrderForm";
+import OrderList from "./OrderList/OrderList";
+import { orderSlice } from "@redux/reducers/OrderSlice";
+import { ordersAPI } from "@api/OrdersAPI";
+import { useAppDispatch, useAppSelector } from "@hooks/redux";
+import { cartAPI } from "@api/CartAPI";
+import Title from "@ui/Title/Title";
+import Loader from "@ui/Loader/Loader";
+import InfoText from "@ui/InfoText/InfoText";
+import css from "./order.module.scss";
 
 const Order = () => {
 	const { t } = useTranslation();

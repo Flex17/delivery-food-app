@@ -1,5 +1,5 @@
 import HistoryCard from "../HistoryCard/HistoryCard";
-import { IHistoryOrderData } from "../../../api/types";
+import { IHistoryOrderData } from "@api/types";
 
 interface HistoryListProps {
 	orders: IHistoryOrderData[],

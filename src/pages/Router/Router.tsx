@@ -1,15 +1,15 @@
 import { pathKeys } from "./config";
 import { Route, Routes } from "react-router-dom";
 import RequireAuth from "./RequireAuth";
-import Layout from "../Layout/Layout";
-import Menu from "../Menu/Menu";
-import Registration from "../Authentication/Registration/Registration";
-import Authorization from "../Authentication/Authorization/Authorization";
-import Order from "../Order/Order";
-import History from "../History/History";
-import SuccessOrder from "../SuccessOrder/SuccessOrder";
-import UnauthorizedLayout from "../UnauthorizedLayout/UnauthorizedLayout";
-import NotFound from "../404/NotFound";
+import Layout from "@pages//Layout/Layout";
+import Menu from "@pages/Menu/Menu";
+import Registration from "@pages/Authentication/Registration/Registration";
+import Order from "@pages/Order/Order";
+import NotFound from "@pages/404/NotFound";
+import UnauthorizedLayout from "@pages/UnauthorizedLayout/UnauthorizedLayout";
+import SuccessOrder from "@pages/SuccessOrder/SuccessOrder";
+import Authorization from "@pages/Authentication/Authorization/Authorization";
+import History from "@pages/History/History";
 
 const AppRouter = () => {
 

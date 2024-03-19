@@ -1,5 +1,5 @@
 import css from "./cardProduct.module.scss";
-import { IOrderProduct } from "../../../../models/order";
+import { IOrderProduct } from "@models/order";
 import { useTranslation } from "react-i18next";
 
 interface CardProductProps {

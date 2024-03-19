@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReauth, providesList } from "./API";
-import { OrderData } from "../models/order";
-import { IAuthRequest } from "../models/user";
+import { OrderData } from "@models/order";
+import { IAuthRequest } from "@models/user";
 import { IHistoryOrderData, IMakeOrderResponse } from "./types";
 
 const ORDERS_URL = "/orders";

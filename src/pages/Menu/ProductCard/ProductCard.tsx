@@ -1,9 +1,9 @@
 import css from "./productCard.module.scss";
 import { useTranslation } from "react-i18next";
-import { useOrderCardRequest } from "../../../hooks/useOrderCardRequest";
-import QuantityBlock from "./QuantityBlock/QuantityBlock";
-import MainButton from "../../../ui/MainButton/MainButton";
-import { ICartProduct } from "../../../models/product";
+import { useOrderCardRequest } from "@hooks/useOrderCardRequest";
+import QuantityBlock from "@ui/QuantityBlock/QuantityBlock";
+import MainButton from "@ui/MainButton/MainButton";
+import { ICartProduct } from "@models/product";
 
 interface ProductCardProps {
 	product: ICartProduct,

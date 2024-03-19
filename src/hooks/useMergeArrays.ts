@@ -1,4 +1,4 @@
-import { ICartProduct, IProduct } from "../models/product";
+import { ICartProduct, IProduct } from "@models/product";
 import { useMemo } from "react";
 
 export const useMergeArrays = (orderProducts: ICartProduct[], products: IProduct[]) => {

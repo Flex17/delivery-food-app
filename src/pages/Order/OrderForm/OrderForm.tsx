@@ -1,13 +1,13 @@
-import MainInput from "../../../ui/MainInput/MainInput";
-import { SubmitHandler, useForm } from "react-hook-form";
-import css from "./orderForm.module.scss";
-import MainButton from "../../../ui/MainButton/MainButton";
-import Dropdown from "../../../ui/Dropdown/Dropdown";
-import { PaymentMethodT } from "../../../ui/Dropdown/DropdownItem/DropdownItem";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { orderSlice } from "../../../redux/reducers/OrderSlice";
 import { useTranslation } from "react-i18next";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { orderSlice } from "@redux/reducers/OrderSlice";
+import { useAppDispatch, useAppSelector } from "@hooks/redux";
+import { PaymentMethodT } from "@ui/Dropdown/DropdownItem/DropdownItem";
+import Dropdown from "@ui/Dropdown/Dropdown";
+import MainInput from "@ui/MainInput/MainInput";
+import MainButton from "@ui/MainButton/MainButton";
+import css from "./orderForm.module.scss";
 
 export interface OrderFormI {
 	address: string;

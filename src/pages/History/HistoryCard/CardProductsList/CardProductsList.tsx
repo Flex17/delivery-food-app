@@ -1,4 +1,4 @@
-import { IOrderProduct } from "../../../../models/order";
+import { IOrderProduct } from "@models/order";
 import css from "./cardProductList.module.scss";
 import CardProduct from "../CardProduct/CardProduct";
 

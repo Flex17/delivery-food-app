@@ -1,8 +1,8 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { pathKeys } from "./config";
-import { useAppSelector } from "../../hooks/redux";
-import { authAPI } from "../../api/AuthAPI";
-import Loader from "../../ui/Loader/Loader";
+import { authAPI } from "@api/AuthAPI";
+import { useAppSelector } from "@hooks/redux";
+import Loader from "@ui/Loader/Loader";
 
 const RequireAuth = () => {
 	const location = useLocation();

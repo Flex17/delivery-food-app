@@ -1,7 +1,7 @@
-import { NavLink, useLocation } from "react-router-dom";
-import css from "./changeMethodLink.module.scss";
 import { useMemo } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import css from "./changeMethodLink.module.scss";
 
 const ChangeMethodLink = () => {
 	const {

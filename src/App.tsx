@@ -1,7 +1,7 @@
 import React from "react";
-import css from "./App.module.scss";
-import AppRouter from "./pages/Router/Router";
 import { ToastContainer } from "react-toastify";
+import AppRouter from "@pages/Router/Router";
+import css from "./App.module.scss";
 
 const App = () => {
 	return (

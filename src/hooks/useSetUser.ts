@@ -1,6 +1,6 @@
-import { authSlice } from "../redux/reducers/AuthSlice";
+import { authSlice } from "@redux/reducers/AuthSlice";
 import { useAppDispatch } from "./redux";
-import { RegistrationResponse } from "../api/types";
+import { RegistrationResponse } from "@api/types";
 
 export const useSetUser = () => {
 	const dispatch = useAppDispatch();

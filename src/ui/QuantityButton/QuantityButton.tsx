@@ -1,8 +1,9 @@
-import css from "./quantityButton.module.scss";
 import React from "react";
+import css from "./quantityButton.module.scss";
 
-interface QuantityButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-
+interface QuantityButtonProps {
+	onClick: () => void,
+	children: React.ReactNode,
 }
 
 const QuantityButton = ({

@@ -1,6 +1,6 @@
-import { cartAPI } from "../api/CartAPI";
-import { IOrderProduct } from "../models/order";
-import { ICartProduct } from "../models/product";
+import { cartAPI } from "@api/CartAPI";
+import { IOrderProduct } from "@models/order";
+import { ICartProduct } from "@models/product";
 import { useAppSelector } from "./redux";
 
 export const useOrderCardRequest = () => {

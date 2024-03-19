@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { authAPI } from "../api/AuthAPI";
+import { authAPI } from "@api/AuthAPI";
 import { useFormOptions } from "./useFormOptions";
 import { useSetUser } from "./useSetUser";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { pathKeys } from "../pages/Router/config";
+import { pathKeys } from "@pages/Router/config";
 import { toast } from "react-toastify";
-import { RegistrationFormI } from "../pages/Authentication/Registration/Registration";
+import { RegistrationFormI } from "@pages/Authentication/Registration/Registration";
 import { useTranslation } from "react-i18next";
 
 export const useRegister = () => {

@@ -2,10 +2,10 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./reducers/AuthSlice";
 import productsReducer from "./reducers/ProductsSlice";
 import orderReducer from "./reducers/OrderSlice";
-import { authAPI } from "../api/AuthAPI";
-import { cartAPI } from "../api/CartAPI";
-import { ordersAPI } from "../api/OrdersAPI";
-import { productsAPI } from "../api/ProductsAPI";
+import { authAPI } from "@api/AuthAPI";
+import { cartAPI } from "@api/CartAPI";
+import { ordersAPI } from "@api/OrdersAPI";
+import { productsAPI } from "@api/ProductsAPI";
 
 const rootReducer = combineReducers({
 	authReducer,
